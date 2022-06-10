@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Mapel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Guru extends Model
 {
     use HasFactory;
 
-    protected $table = "gurus";
+    protected $table = "guru";
     protected $guarded = [''];
 
     public function agenda(){
@@ -19,5 +20,12 @@ class Guru extends Model
     public function user(){
         return $this->belongsTo(user::class);
     }
+
+    public function mapel(){
+        return $this->belongsTo(Mapel::class);
+    }
     
+    public function kelas(){
+        return $this->hasOne(Kelas::class);
+    }
 }

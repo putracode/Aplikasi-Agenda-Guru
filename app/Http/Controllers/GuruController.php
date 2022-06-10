@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Mapel;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
 class GuruController extends Controller
 {
@@ -13,24 +13,24 @@ class GuruController extends Controller
     public function index()
     {
 
-        $user = User::all();
         $data = Guru::all();
+        $user = User::where('role','guru')->get();
+        $mapel = mapel::all();
         return view('admin.guru.index',[
             'data' => $data,
-            'user' => $user
+            'user' => $user,
+            'mapel' => $mapel
         ]);
     }
 
 
     public function insert(Request $request){
-
-                // $this->validate($request,[
-                //     'nama_guru' => 'required',
-                //     'nik_guru' => 'required',
-                //     'mata_pelajaran' => 'required',
-                //     'username' => 'required',
-                //     'password' => 'required'
-                // ]);
+        $this->validate($request,[
+            'nama_guru' => 'required',
+            'nik_guru' => 'required',
+            'mapel_id' => 'required',
+            'user_id' => 'required'
+        ]);
 
         Guru::create($request->all());
         
@@ -39,7 +39,7 @@ class GuruController extends Controller
 
 
     public function destroy($id){
-        
+    
         $guru = Guru::find($id);
 
         $guru->delete();
@@ -52,17 +52,23 @@ class GuruController extends Controller
         
         $guru = Guru::find($id);
 
+        $isiuser = User::where('role','guru')->get();
+        $isiguru = Guru::all();
+        $isimapel = mapel::all();
+
         return view('admin.guru.edit',[
-            'data' => $guru
+            'data' => $guru,
+            'isidata' => $isiguru,
+            'isiuser' => $isiuser,
+            'isimapel' => $isimapel
         ]);
     }
 
 
     public function update(Request $request,$id){
-        $data = Guru::find($id);
 
+        $data = Guru::find($id);
         $data->update($request->all());
-        
         return redirect()->route('guru');
     }
 }

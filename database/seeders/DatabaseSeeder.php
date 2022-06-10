@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Mapel;
 use App\Models\Kelas;
 use Illuminate\Database\Seeder;
 
@@ -25,74 +26,90 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Guru::factory(2)->create();
+        // Guru::factory(2)->create();
 
-        Kelas::factory(3)->create();
+        // Kelas::factory(3)->create();
         
         
         User::create([
-            'name' => 'Ratih Halimah S.T.',
-            'username' => 'ratih',
-            'email' => 'ratih@gmail.com',
+            'name' => 'Samuel Jason',
+            'role' => 'guru',
+            'username' => 'samuel',
+            'email' => 'samuel@gmail.com',
             'password' => bcrypt('password')
         ]);
         
         User::create([
-            'name' => 'Fiki Maulana',
-            'username' => 'fiki',
-            'email' => 'fiki@gmail.com',
+            'name' => 'Reza Adriansyah',
+            'role' => 'guru',
+            'username' => 'reza',
+            'email' => 'reza33@gmail.com',
             'password' => bcrypt('password')
         ]);
         
         User::create([
-            'name' => 'Sabrina',
-            'username' => 'admin',
+            'name' => 'Sabrina Putri',
+            'role' => 'admin',
+            'username' => 'Sabrina',
             'email' => 'sabrina75@gmail.com',
             'password' => bcrypt('password')
         ]);
 
+        // Mapel::create([
+            
+        // ]);
+
         // bcrypt('password')
         // User::factory(3)->create();
-
-        DB::table('agendas')->insert([[
-            'nama_guru'=> 'raphael',
-            'mata_pelajaran'=> 'sincos',
-            'materi'=> 'mtk',
-            'jam_pelajaran'=>'07:00-08:00',
-            'absen'=>'yang tidak masuk',
-            'kelas'=>'XI RPL 2',
-            'pembelajaran'=>'Offline',
-            'link'=>'inilink',
-            'image'=>'inifoto',
-            'keterangan'=>'ijin',
-            'kelas_id' => '1'
+        
+        DB::table('mapel')->insert([[
+            'nama_mapel' => 'Progdas'
         ],[
-            'nama_guru'=> 'raphael',
-            'mata_pelajaran'=> 'sincos',
-            'materi'=> 'mtk',
-            'jam_pelajaran'=>'07:00-08:00',
-            'absen'=>'yang tidak masuk',
-            'kelas'=>'XI RPL 2',
-            'pembelajaran'=>'Offline',
-            'link'=>'inilink',
-            'image'=>'inifoto',
-            'keterangan'=>'ijin',
-            'kelas_id' => '2'
+            'nama_mapel' => 'Basis Data'
         ],[
-            'nama_guru'=> 'raphael',
-            'mata_pelajaran'=> 'sincos',
-            'materi'=> 'mtk',
-            'jam_pelajaran'=>'07:00-08:00',
-            'absen'=>'yang tidak masuk',
-            'kelas'=>'XI RPL 2',
-            'pembelajaran'=>'Offline',
-            'link'=>'inilink',
-            'image'=>'inifoto',
-            'keterangan'=>'ijin',
-            'kelas_id' => '1'
+            'nama_mapel' => 'PBO'
         ]
-            
-
         ]);
+
+        // DB::table('agendas')->insert([[
+        //     'nama_guru'=> 'raphael',
+        //     'mata_pelajaran'=> 'sincos',
+        //     'materi'=> 'mtk',
+        //     'jam_pelajaran'=>'07:00-08:00',
+        //     'absen'=>'yang tidak masuk',
+        //     'kelas'=>'XI RPL 2',
+        //     'pembelajaran'=>'Offline',
+        //     'link'=>'inilink',
+        //     'image'=>'inifoto',
+        //     'keterangan'=>'ijin',
+            
+        // ],[
+        //     'nama_guru'=> 'raphael',
+        //     'mata_pelajaran'=> 'sincos',
+        //     'materi'=> 'mtk',
+        //     'jam_pelajaran'=>'07:00-08:00',
+        //     'absen'=>'yang tidak masuk',
+        //     'kelas'=>'XI RPL 2',
+        //     'pembelajaran'=>'Offline',
+        //     'link'=>'inilink',
+        //     'image'=>'inifoto',
+        //     'keterangan'=>'ijin',
+            
+        // ],[
+        //     'nama_guru'=> 'raphael',
+        //     'mata_pelajaran'=> 'sincos',
+        //     'materi'=> 'mtk',
+        //     'jam_pelajaran'=>'07:00-08:00',
+        //     'absen'=>'yang tidak masuk',
+        //     'kelas'=>'XI RPL 2',
+        //     'pembelajaran'=>'Offline',
+        //     'link'=>'inilink',
+        //     'image'=>'inifoto',
+        //     'keterangan'=>'ijin',
+            
+        // ]
+            
+        
+        // ]);
     }
 }

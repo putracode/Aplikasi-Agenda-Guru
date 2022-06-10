@@ -17,5 +17,13 @@ class Agenda extends Model
         return $this->belongsTo(guru::class);
     }
 
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
+    }
+
+    public function mapel(){
+        return $this->belongsTo(Mapel::class);
+    }
+
 
 }

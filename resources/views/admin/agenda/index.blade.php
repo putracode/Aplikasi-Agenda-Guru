@@ -14,44 +14,47 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nama Guru</th>
-                        <th>Mata Pelajaran</th>
+                        <th>NamaGuru</th>
+                        <th>MataPelajaran</th>
                         <th>Materi</th>
-                        <th>Jam Pelajaran</th>
+                        <th>JamPelajaran</th>
                         <th>Absensi</th>
                         <th>Kelas</th>
-                        <th>Jenis Pembelajaran</th>
-                        <th>Link Pembelajaran</th>
+                        <th>JenisPembelajaran</th>
+                        <th>LinkPembelajaran</th>
                         <th>Dokumentasi</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                @foreach ($data as $row)
                 <tbody>
+                    @foreach ($data as $row)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $row->nama_guru }}</td>
-                        <td>{{ $row->mata_pelajaran }}</td>
+                        <td>{{ $row->guru->nama_guru }}</td>
+                        <td>{{ $row->mapel->nama_mapel }}</td>
                         <td>{{ $row->materi }}</td>
                         <td>{{ $row->jam_pelajaran }}</td>
                         <td>{{ $row->absen }}</td>
-                        <td>{{ $row->kelas }}</td>
+                        <td>{{ $row->kelas->nama_kelas }}</td>
                         <td>{{ $row->pembelajaran }}</td>
                         <td>{{ $row->link }}</td>
                         <td><img src="{{ asset('imageagenda/' . $row->image) }}"  alt="" class="img-fluid"></td>
                         {{-- <td>{{ $row->image }}</td> --}}
                         <td>{{ $row->keterangan }}</td>
-                        <td class="d-flex align-items-center">
+                        <td >
                             {{-- <button type="button" class="btn btn-warning  btn-sm px-3 mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 Edit
                             </button>    --}}
-                            <a href="/editagenda/{{ $row->id }}" class="btn btn-warning btn-sm mr-1">Edit</a>
+                            <a href="/editagenda/{{ $row->id }}" class="btn btn-warning btn-sm mb-1 d-block">Edit</a>
+                            @can('admin')
+                                
                             <a href="/deleteagenda/{{ $row->id }}" class="btn btn-danger btn-sm">Delete</a>
+                            @endcan
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
-                @endforeach
             </table>
         </div>
     </div>
@@ -70,24 +73,31 @@
             <div class="modal-body">
                 <form action="/tambahagenda" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-4">
-                        <label for="exampleInputEmail1" class="form-label">Nama Guru</label>
-                        <input type="text" class="form-control @error('nama_guru') is-invalid @enderror" id="exampleInputEmail1" name="nama_guru">
-                        @error('nama_guru')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                    <div class="mb-3">
+                        <label for="nama_guru" class="form-label">Nama Guru</label>
+                        <input list="browsers" name="guru_id" class="form-control @error('guru_id') is-invalid @enderror" id="nama_guru">
+                        @foreach($guru as $data1)
+                        <datalist id="browsers">
+                              <option value="{{$data1->id}}">{{$data1->nama_guru}}</option>
+                        @endforeach
+                        @error('guru_id')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <label for="exampleInputEmail2" class="form-label">Mata Pelajaran</label>
-                        <input type="text" class="form-control @error('mata_pelajaran') is-invalid @enderror" id="exampleInputEmail2" 
-                        name="mata_pelajaran">
-                        @error('mata_pelajaran')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <input list="browsers1" name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror" id="exampleInputEmail2">
+                        @foreach($mapel as $data2)
+                        <datalist id="browsers1">
+                              <option value="{{$data2->id}}">{{$data2->nama_mapel}}</option>
+                        @endforeach
+                        @error('mapel_id')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
                         @enderror
                     </div>
 
@@ -124,15 +134,20 @@
                         @enderror
                     </div>
                     
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <label for="exampleInputEmail6" class="form-label">Kelas</label>
-                        <input type="text" class="form-control @error('kelas') is-invalid @enderror" id="exampleInputEmail6" name="kelas">
-                        @error('kelas')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <input list="browsers3" name="kelas_id" class="form-control @error('kelas_id') is-invalid @enderror" id="exampleInputEmail6">
+                        @foreach($kelas as $data2)
+                        <datalist id="browsers3">
+                              <option value="{{$data2->id}}">{{$data2->nama_kelas}}</option>
+                        @endforeach
+                        @error('kelas_id')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
                         @enderror
                     </div>
+
                     <div class="mb-4">
                         <label for="exampleInputEmail7" class="form-label">Pembelajaran</label>
                         <select class="form-select @error('pembelajaran') is-invalid @enderror" aria-label="Default select example" id="exampleInputEmail7" name="pembelajaran"> 
@@ -145,6 +160,7 @@
                             </div>
                         @enderror
                     </div>
+                    
                     <div class="mb-4">
                         <label for="exampleInputEmail8" class="form-label">Link</label>
                         <input type="text" class="form-control @error('link') is-invalid @enderror" id="exampleInputEmail8" name="link">

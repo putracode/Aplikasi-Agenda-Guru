@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //ftghj
     }
 
     /**
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         Gate::define('admin',function(User $user){
-            return $user->username === 'admin';
+            return $user->role === 'admin';
         });
     }
 }

@@ -13,15 +13,29 @@ return new class extends Migration
      */
     public function up()
     {
+        // Schema::create('agendas', function (Blueprint $table) {
+        //     $table->id('id');
+        //     $table->string('nama_guru');
+        //     $table->string('mata_pelajaran');
+        //     $table->string('materi');
+        //     $table->string('jam_pelajaran');
+        //     $table->string('absen');
+        //     $table->string('kelas');
+        //     $table->enum('pembelajaran',['online','offline']);
+        //     $table->string('link');
+        //     $table->string('image');    //dokumentasi
+        //     $table->string('keterangan');
+        //     $table->timestamps();
+        // });
+
         Schema::create('agendas', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('kelas_id');
-            $table->string('nama_guru');
-            $table->string('mata_pelajaran');
+            $table->foreignId('guru_id');
+            $table->foreignId('mapel_id');
             $table->string('materi');
             $table->string('jam_pelajaran');
             $table->string('absen');
-            $table->string('kelas');
+            $table->foreignId('kelas_id');
             $table->enum('pembelajaran',['online','offline']);
             $table->string('link');
             $table->string('image');    //dokumentasi

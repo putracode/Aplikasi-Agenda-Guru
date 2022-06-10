@@ -2,25 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Guru;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Kelas extends Model
+class Mapel extends Model
 {
     use HasFactory;
 
-    protected $table = "kelas";
+    protected $table = "mapel";
     protected $guarded = [''];
 
-    public function user(){
-        return $this->belongsTo(user::class);
-    }
-
     public function guru(){
-        return $this->belongsTo(Guru::class);
+        return $this->hasMany(Guru::class);
     }
 
     public function agenda(){
         return $this->hasMany(Agenda::class);
     }
+
+
 }

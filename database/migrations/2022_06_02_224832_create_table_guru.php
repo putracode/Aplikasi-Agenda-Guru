@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gurus', function (Blueprint $table) {
+        Schema::create('guru', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string("nama_guru");
             $table->string("nik_guru");
-            $table->string("mata_pelajaran");
-            $table->string("username");
-            $table->string("password");
+            $table->foreignId('mapel_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

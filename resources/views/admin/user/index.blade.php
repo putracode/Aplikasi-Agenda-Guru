@@ -3,22 +3,22 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
     </div>
     <div class="card-body">
         <button type="button" class="btn btn-primary float-right mb-3 btn-sm mr-3 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Data
         </button>   
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable"  cellspacing="0">
-                
-                    
-                
+            <table class="table table-bordered" width="100%" id="dataTable"  cellspacing="0">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nama Kelas</th>
-                        <th>Wali Kelas</th>
+                        <th>Nama</th>
+                        <th>Role</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Password</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -26,14 +26,17 @@
                     @foreach ($data as $row)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $row->nama_kelas }}</td>
-                        <td>{{ $row->guru->nama_guru }}</td>
-                        <td>
+                        <td>{{ $row->name }}</td>
+                        <td>{{ $row->role }}</td>
+                        <td>{{ $row->username }}</td>
+                        <td>{{ $row->email }}</td>
+                        <td>{{ $row->password }}</td>
+                        <td class="">
                             {{-- <button type="button" class="btn btn-warning  btn-sm px-3 mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 Edit
                             </button>    --}}
-                            <a href="/editkelas/{{ $row->id }}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="/deletekelas/{{ $row->id }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/editregister/{{ $row->id }}" class="btn btn-warning btn-sm mb-1 d-block">Edit</a>
+                            <a href="/deleteregister/{{ $row->id }}" class="btn btn-danger btn-sm ">Delete</a>
                         </td>
                     </tr>
                     @endforeach
@@ -54,29 +57,62 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/tambahkelas" method="POST">
+                <form action="/tambahregister" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="nama_kelas" class="form-label">Nama Kelas</label>
-                        <input type="text" class="form-control @error('nama_kelas') is-invalid @enderror" id="nama_kelas" name="nama_kelas">
-                        @error('nama_kelas')
-                        <div class="invalid-feedback">
-                            {{ $messege }}
-                        </div>
-                    @enderror
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" class="form-control @error('name') @enderror" id="name" 
+                        name="name">
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $messege }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-select @error('role') is-invalid @enderror" aria-label="Default select example" id="role" name="role"> 
+                            <option value="1">guru</option>
+                            <option value="2">admin</option>
+                        </select>
+                        @error('role')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label for="wali_kelas" class="form-label">Wali Kelas</label>
-                        <input list="browsers" name="guru_id"  class="form-control @error('guru_id') is-invalid @enderror" id="wali_kelas">
-                        @foreach($guru as $data1)
-                        <datalist id="browsers">
-                              <option value="{{$data1->id}}">{{$data1->nama_guru}}</option>
-                        @endforeach
-                        @error('guru_id')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control @error('username') @enderror" id="username" 
+                        name="username">
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $messege }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control @error('email') @enderror" id="email" 
+                        name="email">
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $messege }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="text" class="form-control @error('password') @enderror" id="password" 
+                        name="password">
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $messege }}
+                            </div>
                         @enderror
                     </div>
             </div>

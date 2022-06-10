@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,22 +14,30 @@ class AgendaController extends Controller
     public function index()
     {
         $data = Agenda::all();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        $mapel = Mapel::all();
 
         return view('admin.agenda.index',[
-            'data' => $data
+            'data' => $data,
+            'guru' => $guru,
+            'kelas' => $kelas,
+            'mapel' => $mapel
         ]);
     }
 
 
     public function insert(Request $request){
 
+        
+
         $validatedData = $this->validate($request,[
-            'nama_guru' => ['required'],
-            'mata_pelajaran' => ['required'],
+            'guru_id' => ['required'],
+            'mapel_id' => ['required'],
             'materi' => ['required'],
             'jam_pelajaran' => ['required'],
             'absen' => ['required'],
-            'kelas' => ['required'],
+            'kelas_id' => ['required'],
             'pembelajaran' => ['required'],
             'link' => ['required'],
             'image' => ['required','image'],
@@ -63,8 +74,15 @@ class AgendaController extends Controller
         
         $agenda = agenda::find($id);
 
+        $guru = Guru::all();
+        $mapel = mapel::all();
+        $kelas = Kelas::all();
+
         return view('admin.agenda.edit',[
-            'data' => $agenda
+            'data' => $agenda,
+            'guru' => $guru,
+            'kelas' => $kelas,
+            'mapel' => $mapel
         ]);
     }
 

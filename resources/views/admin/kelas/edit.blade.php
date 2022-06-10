@@ -11,19 +11,32 @@
         <form action="/updatekelas/{{ $data->id }}" method="POST">
             @csrf
             <div class="mb-4">
-                <label for="exampleInputEmail1" class="form-label">Nama Guru</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="nama_kelas" value="{{ $data->nama_kelas }}">
+                <label for="nama_kelas" class="form-label">Nama Kelas</label>
+                <input type="text" class="form-control @error('nama_kelas') is-invalid @enderror" id="nama_kelas" 
+                name="nama_kelas" value="{{ $data->nama_kelas }}">
+                @error('nama_kelas')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
 
-            <div class="mb-4">
-                <label for="exampleInputEmail2" class="form-label">NIK Guru</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-                    name="wali_kelas" value="{{ $data->wali_kelas }}">
+            <div class="mb-3">
+                <label for="guru_id" class="form-label">Wali Kelas</label>
+                <input list="browsers" name="guru_id"  class="form-control @error('guru_id') is-invalid @enderror" id="guru_id" value="{{ $data->guru->nama_guru }}">
+                @foreach($guru as $dataguru)
+                <datalist id="browsers">
+                      <option value="{{$dataguru->id}}">{{$dataguru->nama_guru}}</option>
+                @endforeach
+                @error('guru_id')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary px-5 float-right ">Update</button>
-            <a href="/kelas"><button class="btn btn-danger px-5 float-right mr-3">Kembali</button></a>
+            {{-- <a href="/kelas"><button class="btn btn-danger px-5 float-right mr-3">Kembali</button></a> --}}
 
         </form>
     </div>

@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+
 
 class KelasController extends Controller
 {
     public function index()
     {
         $data = Kelas::all();
+        $guru = Guru::all();
 
         
         return view('admin.kelas.index',[
             'data' => $data,
+            'guru' => $guru
         ]);
     }
 
 
     public function insert(Request $request){
 
-                // $this->validate($request,[
-                //     'nama_guru' => 'required',
-                //     'nik_guru' => 'required',
-                //     'mata_pelajaran' => 'required',
-                //     'username' => 'required',
-                //     'password' => 'required'
-                // ]);
+        $this->validate($request,[
+            'nama_kelas' => 'required',
+            'guru_id' => 'required'
+        ]);
 
         kelas::create($request->all());
         
@@ -36,10 +37,9 @@ class KelasController extends Controller
 
 
     public function destroy($id){
-        
-        $guru = kelas::find($id);
+        $data = kelas::find($id);
 
-        $guru->delete();
+        $data->delete();
         
         return redirect()->route('kelas');
     }
@@ -47,10 +47,12 @@ class KelasController extends Controller
 
     public function edit($id){
         
-        $guru = kelas::find($id);
+        $data = kelas::find($id);
+        $guru = Guru::all();
 
         return view('admin.kelas.edit',[
-            'data' => $guru
+            'data' => $data,
+            'guru' => $guru
         ]);
     }
 

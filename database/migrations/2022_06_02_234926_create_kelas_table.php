@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             
             $table->string('nama_kelas');
-            $table->string('wali_kelas');
+            $table->foreignId('guru_id');
+            // $table->string('wali_kelas');
             $table->timestamps();
         });
     }

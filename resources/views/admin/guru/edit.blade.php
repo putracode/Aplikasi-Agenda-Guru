@@ -10,34 +10,42 @@
     <div class="row">
         <form action="/updateguru/{{ $data->id }}" method="POST">
             @csrf
-            <div class="mb-4">
-                <label for="exampleInputEmail1" class="form-label">Nama Guru</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="nama_guru" value="{{ $data->nama_guru }}">
+            <div class="mb-3">
+                <label for="user_id" class="form-label">Nama Guru</label>
+                <input list="browsers" name="user_id" class="form-control @error('user_id') @enderror" id="user_id" value="{{ $data->user_id }}">
+                @foreach($isiuser as $data1)
+                <datalist id="browsers">
+                      <option value="{{$data1->id}}">{{$data1->name}}</option>
+                @endforeach
+                @error('user_id')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
 
-            <div class="mb-4">
-                <label for="exampleInputEmail2" class="form-label">NIK Guru</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-                    name="nik_guru" value="{{ $data->nik_guru }}">
+            <div class="mb-3">
+                <label for="nik_guru" class="form-label">NIK Guru</label>
+                <input type="text" class="form-control @error('nik_guru') @enderror" id="nik_guru" name="nik_guru" value="{{ $data->nik_guru }}">
+                @error('mapel_id')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
 
-            <div class="mb-4">
-                <label for="exampleInputEmail3" class="form-label">Mata Pelajaran</label>
-                <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp"
-                    name="mata_pelajaran" value="{{ $data->mata_pelajaran }}">
-            </div>
-
-            <div class="mb-4">
-                <label for="exampleInputEmail4" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp"
-                    name="username" value="{{ $data->username }}">
-            </div>
-
-            <div class="mb-4">
-                <label for="exampleInputEmail5" class="form-label">Password</label>
-                <input type="text" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp"
-                    name="password" value="{{ $data->password }}">
+            <div class="mb-3">
+                <label for="mapel_id" class="form-label">Nama Pelajaran</label>
+                <input list="browsers2" name="mapel_id"  class="form-control @error('mapel_id') @enderror" id="mapel_id" value="{{ $data->mapel_id }}">
+                @foreach($isimapel as $datamapel)
+                <datalist id="browsers2">
+                      <option value="{{$datamapel->id}}">{{$datamapel->nama_mapel}}</option>
+                @endforeach
+                @error('mapel_id')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary px-5 float-right ">Update</button>
