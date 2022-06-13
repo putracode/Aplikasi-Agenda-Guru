@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -51,5 +52,9 @@ class User extends Authenticatable
 
     public function kelas(){
         return $this->hasOne(Kelas::class);
+    }
+
+    public function agenda(){
+        return $this->hasOne(agenda::class);
     }
 }

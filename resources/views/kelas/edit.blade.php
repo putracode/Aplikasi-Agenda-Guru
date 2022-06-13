@@ -23,11 +23,15 @@
 
             <div class="mb-3">
                 <label for="guru_id" class="form-label">Wali Kelas</label>
-                <input list="browsers" name="guru_id"  class="form-control @error('guru_id') is-invalid @enderror" id="guru_id" value="{{ $data->guru->nama_guru }}">
-                @foreach($guru as $dataguru)
-                <datalist id="browsers">
-                      <option value="{{$dataguru->id}}">{{$dataguru->nama_guru}}</option>
-                @endforeach
+                <select class="form-select" name="guru_id" id="guru_id">
+                    @foreach ($guru as $gurus)
+                    @if (old('guru_id', $data->guru_id ) == $gurus->id)
+                        <option value="{{ $gurus->id }}" selected>{{ $gurus->nama_guru }}</option>
+                    @else
+                        <option value="{{ $gurus->id }}">{{ $gurus->nama_guru }}</option>
+                    @endif
+                    @endforeach
+                </select>
                 @error('guru_id')
                 <div class="invalid-feedback">
                     {{$message}}

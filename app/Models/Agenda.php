@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kelas;
+use App\Models\Mapel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Agenda extends Model
 {
@@ -17,6 +19,10 @@ class Agenda extends Model
         return $this->belongsTo(guru::class);
     }
 
+    public function user(){
+        return $this->belongsTo(user::class);
+    }
+    
     public function kelas(){
         return $this->belongsTo(Kelas::class);
     }

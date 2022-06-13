@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         
         
         User::create([
-            'name' => 'Samuel Jason',
+            'name' => 'Samuel Jason Rain',
             'role' => 'guru',
             'username' => 'samuel',
             'email' => 'samuel@gmail.com',

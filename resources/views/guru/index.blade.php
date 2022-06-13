@@ -86,11 +86,11 @@
 
                     <div class="mb-3">
                         <label for="mapel_id" class="form-label">Mata Pelajaran</label>
-                        <input list="browsers2" name="mapel_id" class="form-control @error('mapel_id') @enderror" id="mapel_id">
-                        @foreach($mapel as $datamapel)
-                        <datalist id="browsers2">
-                              <option value="{{$datamapel->id}}">{{$datamapel->nama_mapel}}</option>
-                        @endforeach
+                        <select class="form-select" name="mapel_id" id="mapel">
+                            @foreach ($mapel as $mapels)
+                            <option value="{{ $mapels->id }}">{{ $mapels->nama_mapel }}</option>
+                            @endforeach
+                        </select>
                         @error('mapel_id')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -100,11 +100,11 @@
                     
                     <div class="mb-3">
                         <label for="user_id" class="form-label">Username</label>
-                        <input list="browsers" name="user_id"  class="form-control @error('user_id') @enderror" id="user_id">
-                        @foreach($user as $data)
-                        <datalist id="browsers">
-                              <option value="{{$data->id}}">{{$data->username}}</option>
-                        @endforeach
+                        <select class="form-select" name="user_id" id="user_id">
+                            @foreach ($user as $users)
+                            <option value="{{ $users->id }}">{{ $users->name }}</option>
+                            @endforeach
+                        </select>
                         @error('user_id')
                         <div class="invalid-feedback">
                             {{$message}}

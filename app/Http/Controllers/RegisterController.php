@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function index(){
         $data = user::all();
-        return view('admin.user.index',[
+        return view('user.index',[
             'data' => $data
         ]);
     }
@@ -42,7 +42,7 @@ class RegisterController extends Controller
     public function edit($id){
         $data = User::find($id);
 
-        return view('admin.user.edit',[
+        return view('user.edit',[
             'data' => $data
         ]);
     }

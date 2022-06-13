@@ -56,6 +56,7 @@
             <div class="modal-body">
                 <form action="/tambahkelas" method="POST">
                     @csrf
+
                     <div class="mb-3">
                         <label for="nama_kelas" class="form-label">Nama Kelas</label>
                         <input type="text" class="form-control @error('nama_kelas') is-invalid @enderror" id="nama_kelas" name="nama_kelas">
@@ -67,12 +68,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="wali_kelas" class="form-label">Wali Kelas</label>
-                        <input list="browsers" name="guru_id"  class="form-control @error('guru_id') is-invalid @enderror" id="wali_kelas">
-                        @foreach($guru as $data1)
-                        <datalist id="browsers">
-                              <option value="{{$data1->id}}">{{$data1->nama_guru}}</option>
-                        @endforeach
+                        <label for="guru_id" class="form-label">Wali Kelas</label>
+                        <select class="form-select" name="guru_id" id="guru_id">
+                            @foreach ($guru as $gurus)
+                                <option value="{{ $gurus->id }}">{{ $gurus->nama_guru }}</option>
+                            @endforeach
+                        </select>
                         @error('guru_id')
                         <div class="invalid-feedback">
                             {{$message}}

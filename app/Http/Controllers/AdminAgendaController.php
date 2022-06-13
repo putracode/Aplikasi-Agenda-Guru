@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agenda;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Mapel;
+use App\Models\Agenda;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
-class AgendaController extends Controller
+class AdminAgendaController extends Controller
 {
     public function index()
     {
@@ -18,7 +18,7 @@ class AgendaController extends Controller
         $kelas = Kelas::all();
         $mapel = Mapel::all();
 
-        return view('admin.agenda.index',[
+        return view('agenda.admin.index',[
             'data' => $data,
             'guru' => $guru,
             'kelas' => $kelas,
@@ -66,7 +66,7 @@ class AgendaController extends Controller
 
         $agenda->delete();
         
-        return redirect()->route('agenda');
+        return redirect()->route('adminagenda');
     }
 
 
@@ -78,7 +78,7 @@ class AgendaController extends Controller
         $mapel = mapel::all();
         $kelas = Kelas::all();
 
-        return view('admin.agenda.edit',[
+        return view('agenda.admin.edit',[
             'data' => $agenda,
             'guru' => $guru,
             'kelas' => $kelas,
@@ -98,6 +98,6 @@ class AgendaController extends Controller
             $data->save();
         }
 
-        return redirect()->route('agenda');
+        return redirect()->route('adminagenda');
     }
 }

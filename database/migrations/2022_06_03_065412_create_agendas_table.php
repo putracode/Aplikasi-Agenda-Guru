@@ -30,8 +30,9 @@ return new class extends Migration
 
         Schema::create('agendas', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('guru_id');
+            $table->string('name');
             $table->foreignId('mapel_id');
+            $table->foreignId('user_id');
             $table->string('materi');
             $table->string('jam_pelajaran');
             $table->string('absen');

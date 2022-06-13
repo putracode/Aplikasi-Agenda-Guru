@@ -16,7 +16,7 @@ class GuruController extends Controller
         $data = Guru::all();
         $user = User::where('role','guru')->get();
         $mapel = mapel::all();
-        return view('admin.guru.index',[
+        return view('guru.index',[
             'data' => $data,
             'user' => $user,
             'mapel' => $mapel
@@ -50,17 +50,17 @@ class GuruController extends Controller
 
     public function edit($id){
         
-        $guru = Guru::find($id);
+        $gurus = Guru::find($id);
 
-        $isiuser = User::where('role','guru')->get();
-        $isiguru = Guru::all();
-        $isimapel = mapel::all();
+        $user = User::where('role','guru')->get();
+        $guru = Guru::all();
+        $mapel = mapel::all();
 
-        return view('admin.guru.edit',[
-            'data' => $guru,
-            'isidata' => $isiguru,
-            'isiuser' => $isiuser,
-            'isimapel' => $isimapel
+        return view('guru.edit',[
+            'data' => $gurus,
+            'guru' => $guru,
+            'user' => $user,
+            'mapel' => $mapel
         ]);
     }
 

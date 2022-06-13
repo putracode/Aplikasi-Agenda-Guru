@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminAgendaController;
+use App\Http\Controllers\GuruAgendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +49,19 @@ Route::get('/editkelas/{id}',[KelasController::class,'edit']);
 Route::post('/updatekelas/{id}',[KelasController::class,'update']);
 
 
-// Tabel Data Agenda
-Route::get('/agenda',[AgendaController::class,'index'])->name('agenda')->middleware('auth');
-Route::post('/tambahagenda',[AgendaController::class,'insert']);
-Route::get('/deleteagenda/{id}',[AgendaController::class,'destroy'])->middleware('auth');
-Route::get('/editagenda/{id}',[AgendaController::class,'edit'])->middleware('auth');
-Route::post('/updateagenda/{id}',[AgendaController::class,'update']);
+// Tabel Data Agenda Admin
+Route::get('/agendaadmin',[AdminAgendaController::class,'index'])->name('adminagenda')->middleware('auth');
+Route::post('/tambahagendaadmin',[AdminAgendaController::class,'insert']);
+Route::get('/deleteagendaadmin/{id}',[AdminAgendaController::class,'destroy'])->middleware('auth');
+Route::get('/editagendaadmin/{id}',[AdminAgendaController::class,'edit'])->middleware('auth');
+Route::post('/updateagendaadmin/{id}',[AdminAgendaController::class,'update']);
+
+// Tabel Data Agenda Guru
+Route::get('/agendaguru',[GuruAgendaController::class,'index'])->name('guruagenda')->middleware('auth');
+Route::post('/tambahagendaguru',[GuruAgendaController::class,'insert']);
+Route::get('/deleteagendaguru/{id}',[GuruAgendaController::class,'destroy'])->middleware('auth');
+Route::get('/editagendaguru/{id}',[GuruAgendaController::class,'edit'])->middleware('auth');
+Route::post('/updateagendaguru/{id}',[GuruAgendaController::class,'update']);
 
 
 // Tabel Data User
@@ -67,3 +76,6 @@ Route::post('/updateregister/{id}',[RegisterController::class,'update']);
 Route::get('/login',[LoginController::class,'index'])->middleware('guest');
 Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class,'logout']);
+
+// ExportExcel
+Route::get('/exportexcel',[DashboardController::class,'exportexcel'])->name('exportexcel');

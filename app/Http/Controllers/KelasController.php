@@ -16,7 +16,7 @@ class KelasController extends Controller
         $guru = Guru::all();
 
         
-        return view('admin.kelas.index',[
+        return view('kelas.index',[
             'data' => $data,
             'guru' => $guru
         ]);
@@ -50,7 +50,7 @@ class KelasController extends Controller
         $data = kelas::find($id);
         $guru = Guru::all();
 
-        return view('admin.kelas.edit',[
+        return view('kelas.edit',[
             'data' => $data,
             'guru' => $guru
         ]);

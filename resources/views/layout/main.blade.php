@@ -36,10 +36,11 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-                <div class="sidebar-brand-icon rotate-n-15">
+                {{-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">TB Admin <sup></sup></div>
+                </div> --}}
+                <img src="/asset/img/tb.png" class="img-fluid rounded" alt="" width="50px">
+                <div class="sidebar-brand-text mx-3 mt-2"> <sup> Aplikasi Agenda Guru</sup></div>
             </a>
 
             <!-- Divider -->
@@ -47,40 +48,48 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a href="/dashboard" class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            {{-- <hr class="sidebar-divider"> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @can('admin')
-                        
-                        <a class="collapse-item" href="/guru">Tabel Guru</a>
-                        <a class="collapse-item" href="/kelas">Tabel Kelas</a>
-                        @endcan
-                        <a class="collapse-item" href="/agenda">Tabel Agenda</a>
-                    </div>
-                </div>
                 @can('admin')
-                    
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Data</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            
+                            <a class="collapse-item" href="/guru">Tabel Guru</a>
+                            <a class="collapse-item" href="/kelas">Tabel Kelas</a>
+                            <a class="collapse-item" href="/agendaadmin">Tabel Agenda</a>
+                        </div>
+                    </div>
+                @endcan
+                @can('admin')
                 <li class="nav-item">
                     <a class="nav-link" href="/register">
                         <i class="fas fa-fw bi bi-person-fill"></i>
                         <span>Registrasi User</span></a>
+                    </li>
+                    @endcan
+                </li>
+
+                @can('guru')
+                <li class="nav-item">
+                    <a href="/agendaguru" class="nav-link {{ Request::is('agendaguru*') ? 'active' : '' }}">
+                        <i class="bi bi-layout-sidebar"></i>
+                        <span>Tabel Agenda</span>
+                    </a>
                 </li>
                 @endcan
-            </li>
 
 
 
