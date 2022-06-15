@@ -29,7 +29,7 @@ class RegisterController extends Controller
         $validatedData['password'] = bcrypt($validatedData['password']);
         User::create($validatedData);
 
-        return redirect()->route('user');
+        return redirect()->route('user')->with('Success','Data berhasil Ditambahkan!');
     }
 
     public function destroy($id){
@@ -53,6 +53,13 @@ class RegisterController extends Controller
         $request['password'] = bcrypt($request['password']);
         $data->update($request->all());
         
-        return redirect()->route('user');
+        return redirect()->route('user')->with('Edit','Data berhasil Diubah!');
+    }
+
+    public function form(){
+        $data = user::all();
+        return view('user.tambah',[
+            'data' => $data
+        ]);
     }
 }

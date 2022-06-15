@@ -22,7 +22,6 @@
     <!-- Custom styles for this template-->
     <link href="/asset/css/sb-admin-2.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css.css">
 
 </head>
 
@@ -40,15 +39,15 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div> --}}
                 <img src="/asset/img/tb.png" class="img-fluid rounded" alt="" width="50px">
-                <div class="sidebar-brand-text mx-3 mt-2"> <sup> Aplikasi Agenda Guru</sup></div>
+                <div class="sidebar-brand-text mx-3 mt-2"> <sup>Agenda Guru</sup></div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            {{-- <hr class="sidebar-divider my-0"> --}}
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a href="/dashboard" class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard*') ? 'active' : '' }}">
+                <a href="/dashboard" class="nav-link ">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -79,12 +78,12 @@
                         <i class="fas fa-fw bi bi-person-fill"></i>
                         <span>Registrasi User</span></a>
                     </li>
-                    @endcan
                 </li>
+                @endcan
 
                 @can('guru')
-                <li class="nav-item">
-                    <a href="/agendaguru" class="nav-link {{ Request::is('agendaguru*') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('agendaguru*') ? 'active' : '' }}">
+                    <a href="/agendaguru" class="nav-link ">
                         <i class="bi bi-layout-sidebar"></i>
                         <span>Tabel Agenda</span>
                     </a>

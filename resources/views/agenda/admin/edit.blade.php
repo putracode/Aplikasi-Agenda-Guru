@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.master')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
     </div>
     <div class="row">
-        <form action="/updateagendaadmin/{{ $data->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/updateagendaguru/{{ $data->id }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-4">
@@ -25,10 +25,14 @@
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             <div class="mb-4">
-                <label for="mapel" class="form-label">Mata Pelajaran</label>
-                <select class="form-select" name="mapel_id" id="mapel">
+                <label for="mapel_id" class="form-label">Mata Pelajaran</label>
+                <select class="form-select" name="mapel_id" id="mapel_id">
                     @foreach ($mapel as $mapels)
+                    @if (old('mapel_id', $data->mapel_id ) == $mapels->id)
+                    <option value="{{ $mapels->id }}" selected>{{ $mapels->nama_mapel }}</option>
+                    @else
                     <option value="{{ $mapels->id }}">{{ $mapels->nama_mapel }}</option>
+                    @endif
                     @endforeach
                 </select>
                 @error('mapel_id')
@@ -90,7 +94,7 @@
             <div class="mb-4">
                 <label for="exampleInputEmail7" class="form-label">Pembelajaran</label>
                 <select class="form-select @error('pembelajaran') is-invalid @enderror"
-                    aria-label="Default select example" id="exampleInputEmail7" name="pembelajaran value="{{ $data->pembelajaran }}"">
+                    aria-label="Default select example" id="exampleInputEmail7" name="pembelajaran" value="{{ $data->pembelajaran }}">
                     <option value="1">Online</option>
                     <option value="2">Offline</option>
                 </select>
@@ -147,3 +151,6 @@
 
 
 @endsection
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

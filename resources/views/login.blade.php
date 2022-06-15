@@ -2,132 +2,104 @@
 <html lang="en">
 
 <head>
-
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="/asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="/asset/css/sb-admin-2.min.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/skydash/template/vendors/feather/feather.css">
+    <link rel="stylesheet" href="/skydash/template/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/skydash/template/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/skydash/template/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/skydash/template/images/favicon.png" />
 </head>
 
-<body class="bg-gradient-primary">
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+                <div class="row flex-grow">
+                    <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                        <div class="auth-form-transparent text-left p-3">
+                            <center>
+                                <div class="brand-logo">
+                                    <img src="/asset/img/tbb.png" alt="logo" style="width: 55px;">
+                                </div>
+                                <h4>Welcome back!</h4>
+                                <h6 class="font-weight-light">to Starbhak Agenda</h6>
+                            </center>
 
-    <div class="container ">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center mt-2">
-
-            @if (session()->has('loginError'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('loginError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
-
-            <div class="col-xl-5 col-lg-12 col-md-9 mt-5">
-
-                <div class="card o-hidden border-0 shadow-lg mt-5">
-
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-
-                                        {{-- <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1> --}}
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome to Starbhak Agenda!</h1>
-                                    </div>
-                                    <form class="user" action="/login" method="POST">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type="text"
-                                                class="form-control form-control-user @error('username') is-invalid @enderror"
-                                                id="exampleInputusername" aria-describedby="usernameHelp"
-                                                placeholder="Enter Your Username..." name="username" required
-                                                value="{{ old('username') }}">
-                                            @error('username')
+                            <form class="pt-4" action="/login" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleInputEmail">Username</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-user text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-lg border-left-0 @error('username') is-invalid @enderror"
+                                        id="exampleInputEmail" placeholder="Enter Your Username..." name="username" required value="{{ old('username') }}">
+                                        @error('username')
                                             <div class="invalid-feedback">
                                                 {{ $messege }}
                                             </div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
-                                                id="exampleInputPassword" placeholder="Password" name="password"
-                                                required>
-                                            @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $messege }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div> --}}
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-
-                                        <hr>
-                                        {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> --}}
-                                    </form>
-                                    {{-- <hr> --}}
-                                    {{-- <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div> --}}
-                                    <div class="text-center">
-                                        {{-- <a class="small" href="/register">Create an Account!</a> --}}
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="ti-lock text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input type="password" class="form-control form-control-lg border-left-0 @error('password') is-invalid @enderror"
+                                        id="exampleInputPassword" placeholder="Password" name="password">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $messege }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="my-3">
+                                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                                    LOGIN
+                                  </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    <div class="col-lg-6 half-bg d-flex flex-row">
+                        <img src="/asset/img/tebe.jpg" alt="" height="616px">
+                    </div>
                 </div>
-
             </div>
-
+            <!-- content-wrapper ends -->
         </div>
-
+        <!-- page-body-wrapper ends -->
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="/asset/vendor/jquery/jquery.min.js"></script>
-    <script src="/asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/asset/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/asset/js/sb-admin-2.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/skydash/template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/skydash/template/js/off-canvas.js"></script>
+    <script src="/skydash/template/js/hoverable-collapse.js"></script>
+    <script src="/skydash/template/js/template.js"></script>
+    <script src="/skydash/template/js/settings.js"></script>
+    <script src="/skydash/template/js/todolist.js"></script>
+    <!-- endinject -->
 </body>
 
 </html>

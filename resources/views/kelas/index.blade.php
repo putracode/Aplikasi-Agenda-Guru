@@ -1,14 +1,24 @@
-@extends('layout.main')
+@extends('layout.master')
 
 @section('content')
 <div class="card shadow mb-4">
+    @if (session()->has('Success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('Success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if (session()->has('Edit'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('Edit') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
     </div>
     <div class="card-body">
-        <button type="button" class="btn btn-primary float-right mb-3 btn-sm mr-3 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Data
-        </button>   
+        <a href="/formkelas" class="btn btn-primary float-right mb-3 btn-sm mr-3 px-3">Tambah Data</a>   
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable"  cellspacing="0">
                 

@@ -32,7 +32,7 @@ class KelasController extends Controller
 
         kelas::create($request->all());
         
-        return redirect()->route('kelas');
+        return redirect()->route('kelas')->with('Success','Data berhasil Ditambahkan!');
     }
 
 
@@ -62,6 +62,16 @@ class KelasController extends Controller
 
         $data->update($request->all());
         
-        return redirect()->route('kelas');
+        return redirect()->route('kelas')->with('Edit','Data berhasil Diubah!');
+    }
+
+    public function form(){
+        $data = Kelas::all();
+        $guru = Guru::all();
+        return view('kelas.tambah',[
+            'data' => $data,
+            'guru' => $guru
+        ]);
     }
 }
+

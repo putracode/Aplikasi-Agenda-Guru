@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('jam_pelajaran');
             $table->string('absen');
             $table->foreignId('kelas_id');
-            $table->enum('pembelajaran',['online','offline']);
+            $table->enum('pembelajaran',['Online','Offline']);
             $table->string('link');
             $table->string('image');    //dokumentasi
             $table->string('keterangan');

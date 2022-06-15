@@ -56,7 +56,7 @@ class AdminAgendaController extends Controller
             $data->save();
         }
         
-        return redirect()->route('agenda');
+        return redirect()->route('agenda')->with('Success','Data berhasil Ditambahkan!');
     }
 
 
@@ -79,7 +79,7 @@ class AdminAgendaController extends Controller
         $kelas = Kelas::all();
 
         return view('agenda.admin.edit',[
-            'data' => $agenda,
+            'data'  => $agenda,
             'guru' => $guru,
             'kelas' => $kelas,
             'mapel' => $mapel
@@ -98,6 +98,20 @@ class AdminAgendaController extends Controller
             $data->save();
         }
 
-        return redirect()->route('adminagenda');
+        return redirect()->route('adminagenda')->with('Edit','Data berhasil Diubah!');
+    }
+
+    public function form(){
+        $data = Agenda::all();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        $mapel = Mapel::all();
+
+        return view('agenda.admin.tambah',[
+            'data' => $data,
+            'guru' => $guru,
+            'kelas' => $kelas,
+            'mapel' => $mapel
+        ]);
     }
 }

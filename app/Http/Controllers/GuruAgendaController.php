@@ -56,7 +56,7 @@ class GuruAgendaController extends Controller
             $data->save();
         }
         
-        return redirect()->route('guruagenda');
+        return redirect()->route('guruagenda')->with('Success','Data berhasil Ditambahkan!');
     }
 
 
@@ -98,6 +98,19 @@ class GuruAgendaController extends Controller
             $data->save();
         }
 
-        return redirect()->route('guruagenda');
+        return redirect()->route('guruagenda')->with('Edit','Data berhasil Diubah!');
+    }
+
+    public function form(){
+        $data = Agenda::where('user_id',auth()->user()->id)->get();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        $mapel = Mapel::all();
+        return view('agenda.guru.tambah',[
+            'data' => $data,
+            'guru' => $guru,
+            'kelas' => $kelas,
+            'mapel' => $mapel
+        ]);
     }
 }

@@ -34,7 +34,7 @@ class GuruController extends Controller
 
         Guru::create($request->all());
         
-        return redirect()->route('guru');
+        return redirect()->route('guru')->with('Success','Data berhasil Ditambahkan!');
     }
 
 
@@ -69,6 +69,17 @@ class GuruController extends Controller
 
         $data = Guru::find($id);
         $data->update($request->all());
-        return redirect()->route('guru');
+        return redirect()->route('guru')->with('Edit','Data berhasil Diubah!');
+    }
+
+    public function form(){
+        $data = Guru::all();
+        $user = User::where('role','guru')->get();
+        $mapel = mapel::all();
+        return view('guru.tambah',[
+            'data' => $data,
+            'user' => $user,
+            'mapel' => $mapel
+        ]);
     }
 }
