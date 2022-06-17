@@ -15,9 +15,9 @@ class Agenda extends Model
 
     protected $guarded = [''];
 
-    public function guru(){
-        return $this->belongsTo(guru::class);
-    }
+    // public function guru(){
+    //     return $this->belongsTo(guru::class);
+    // }
 
     public function user(){
         return $this->belongsTo(user::class);

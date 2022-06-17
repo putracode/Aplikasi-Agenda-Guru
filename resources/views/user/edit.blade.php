@@ -65,7 +65,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary px-5 float-right ">Update</button>
-            {{-- <a href="/kelas"><button class="btn btn-danger px-5 float-right mr-3">Kembali</button></a> --}}
+            <a href="/register" class="btn btn-danger px-5 mr-2 float-right">Cancel</a>
 
         </form>
     </div>

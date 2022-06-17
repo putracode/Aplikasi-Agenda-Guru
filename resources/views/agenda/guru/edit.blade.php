@@ -143,7 +143,7 @@
 
 
             <button type="submit" class="btn btn-primary px-5 float-right ">Update</button>
-
+            <a href="/agendaguru" class="btn btn-danger px-5 mr-2 float-right">Cancel</a>
 
         </form>
     </div>

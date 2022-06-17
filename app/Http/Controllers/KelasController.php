@@ -12,7 +12,7 @@ class KelasController extends Controller
 {
     public function index()
     {
-        $data = Kelas::all();
+        $data = Kelas::all()->sortBy('created_at');
         $guru = Guru::all();
 
         
@@ -48,7 +48,7 @@ class KelasController extends Controller
     public function edit($id){
         
         $data = kelas::find($id);
-        $guru = Guru::all();
+        $guru = Guru::all()->sortBy('nama_guru');
 
         return view('kelas.edit',[
             'data' => $data,
@@ -67,7 +67,7 @@ class KelasController extends Controller
 
     public function form(){
         $data = Kelas::all();
-        $guru = Guru::all();
+        $guru = Guru::all()->sortBy('nama_guru');
         return view('kelas.tambah',[
             'data' => $data,
             'guru' => $guru

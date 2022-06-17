@@ -35,6 +35,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('materi');
             $table->string('jam_pelajaran');
+            $table->string('jumlah_hadir');
+            $table->string('jumlah_tidak_hadir');
             $table->string('absen');
             $table->foreignId('kelas_id');
             $table->enum('pembelajaran',['Online','Offline']);

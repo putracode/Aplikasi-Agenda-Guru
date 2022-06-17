@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>Starbhak Agenda</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../skydash/template/vendors/feather/feather.css">
     <link rel="stylesheet" href="../skydash/template/vendors/ti-icons/css/themify-icons.css">
@@ -123,6 +123,11 @@
                         <div class="collapse" id="tables">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="/kelas">Tabel Kelas</a></li>
+                            </ul>
+                        </div>
+                        <div class="collapse" id="tables">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/mapel">Tabel Mapel</a></li>
                             </ul>
                         </div>
                         <div class="collapse" id="tables">

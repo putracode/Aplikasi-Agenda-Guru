@@ -62,14 +62,8 @@ class DatabaseSeeder extends Seeder
         // bcrypt('password')
         // User::factory(3)->create();
         
-        DB::table('mapel')->insert([[
-            'nama_mapel' => 'Progdas'
-        ],[
-            'nama_mapel' => 'Basis Data'
-        ],[
-            'nama_mapel' => 'PBO'
-        ]
-        ]);
+        // 
+        
 
         // DB::table('agendas')->insert([[
         //     'nama_guru'=> 'raphael',

@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 half-bg d-flex flex-row">
-                        <img src="/asset/img/tebe.jpg" alt="" height="616px">
+                        <img src="/asset/img/tebes.jpg" alt="" height="616px">
                     </div>
                 </div>
             </div>

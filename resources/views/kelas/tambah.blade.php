@@ -34,8 +34,8 @@
                         </div>
                         @enderror
                     </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                    <button type="submit" class="btn btn-primary px-5 float-right">Submit</button>
+                    <a href="/kelas" class="btn btn-danger px-5 mr-2 float-right">Cancel</a>
             </form>
         </div>
     </div>

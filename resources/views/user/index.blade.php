@@ -20,7 +20,7 @@
     <div class="card-body">
         <a href="/formuser" class="btn btn-primary float-right mb-3 btn-sm mr-3 px-3">Tambah Data</a>   
         <div class="table-responsive">
-            <table class="table table-bordered" width="100%" id="dataTable"  cellspacing="0">
+            <table class="table table-striped" id="dataTable"  cellspacing="0">
                 <thead>
                     <tr>
                         <th>ID</th>

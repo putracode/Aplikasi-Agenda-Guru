@@ -8,7 +8,7 @@
         <div class="card-body">
             <h4 class="card-title">Tambah User</h4>
 
-            <form class="forms-sample"action="/tambahkelas" method="POST">
+            <form class="forms-sample"action="/tambahregister" method="POST">
                 
                 @csrf
                     <div class="mb-3">
@@ -68,8 +68,8 @@
                         @enderror
                     </div>
 
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                    <button type="submit" class="btn btn-primary px-5 float-right">Submit</button>
+                    <a href="/register" class="btn btn-danger px-5 mr-2 float-right">Cancel</a>
             </form>
         </div>
     </div>

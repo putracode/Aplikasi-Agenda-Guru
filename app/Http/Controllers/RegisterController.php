@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     public function index(){
-        $data = user::all();
+        $data = user::all()->sortBy('name');
         return view('user.index',[
             'data' => $data
         ]);
@@ -22,7 +22,7 @@ class RegisterController extends Controller
             'name' => ['required'],
             'role' => ['required'],
             'username' => ['required'],
-            'email' => ['required','email'],
+            'email' => ['required'],
             'password' => ['required']
         ]);
 
@@ -50,7 +50,7 @@ class RegisterController extends Controller
     public function update(Request $request,$id){
         $data = user::find($id);
 
-        $request['password'] = bcrypt($request['password']);
+        // $request['password'] = bcrypt($request['password']);
         $data->update($request->all());
         
         return redirect()->route('user')->with('Edit','Data berhasil Diubah!');

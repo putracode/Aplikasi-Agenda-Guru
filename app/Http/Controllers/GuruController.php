@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use App\Models\Guru;
-use App\Models\Mapel;
 use App\Models\User;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class GuruController extends Controller
 {
@@ -13,7 +15,7 @@ class GuruController extends Controller
     public function index()
     {
 
-        $data = Guru::all();
+        $data = Guru::all()->sortBy('nama_guru');
         $user = User::where('role','guru')->get();
         $mapel = mapel::all();
         return view('guru.index',[
@@ -52,9 +54,9 @@ class GuruController extends Controller
         
         $gurus = Guru::find($id);
 
-        $user = User::where('role','guru')->get();
-        $guru = Guru::all();
-        $mapel = mapel::all();
+        $user = User::where('role','guru')->get()->sortBy('name');
+        $guru = Guru::all()->sortBy('nama_guru');
+        $mapel = mapel::all()->sortBy('nama_mapel');
 
         return view('guru.edit',[
             'data' => $gurus,
@@ -74,12 +76,14 @@ class GuruController extends Controller
 
     public function form(){
         $data = Guru::all();
-        $user = User::where('role','guru')->get();
-        $mapel = mapel::all();
+        $user = User::where('role','guru')->get()->sortBy('name');
+        $mapel = mapel::all()->sortBy('nama_mapel');
         return view('guru.tambah',[
             'data' => $data,
             'user' => $user,
             'mapel' => $mapel
         ]);
     }
+
+    
 }
