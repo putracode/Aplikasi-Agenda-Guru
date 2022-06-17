@@ -53,7 +53,7 @@ class AgendaExportAdmin implements FromView,WithColumnWidths,WithStyles
             'G' => 50,            
             'H' => 14,
             'I' => 18,            
-            'J' => 50,
+            'J' => 18,
             'K' => 20,            
             'L' => 17,            
         ];
