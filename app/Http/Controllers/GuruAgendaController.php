@@ -10,6 +10,7 @@ use App\Models\Agenda;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class GuruAgendaController extends Controller
@@ -32,11 +33,10 @@ class GuruAgendaController extends Controller
 
     public function insert(Request $request){
 
-        
-
         $validatedData = $this->validate($request,[
             'name' => ['required'],
             'mapel_id' => ['required'],
+            'user_id' => ['required'],
             'materi' => ['required'],
             'jam_pelajaran' => ['required'],
             'absen' => ['required'],
@@ -49,26 +49,32 @@ class GuruAgendaController extends Controller
             'keterangan' => ['required']
         ]);
 
-        // if($request->file('image')){
-        //     $validatedData['image'] = $request->file('image')->store('agenda-image');
-        // }
-
-        $data = Agenda::create($request->all());
-
-        if($request->hasFile('image')){
-            $request->file('image')->move('imageagenda/',$request->file('image')->getClientOriginalName());
-            $data->image = $request->file('image')->getClientOriginalName();
-            $data->save();
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('agenda-image');
         }
+
+        Agenda::create($validatedData);
+
+        // $data = Agenda::create($request->all());
+
+        // if($request->hasFile('image')){
+        //     $request->file('image')->move('imageagenda/',$request->file('image')->getClientOriginalName());
+        //     $data->image = $request->file('image')->getClientOriginalName();
+        //     $data->save();
+        // }
         
         return redirect()->route('guruagenda')->with('Success','Data berhasil Ditambahkan!');
     }
 
 
     public function destroy($id){
-        
-        $agenda = agenda::find($id);
 
+        $post = agenda::find($id);
+        if($post->image){
+            Storage::delete($post->image);
+        }
+
+        $agenda = agenda::find($id);
         $agenda->delete();
         
         return redirect()->route('guruagenda');
@@ -92,16 +98,32 @@ class GuruAgendaController extends Controller
     }
 
 
-    public function update(Request $request,$id){
-        $data = agenda::find($id);
+    public function update(Request $request,$id,){
 
-        $data->update($request->all());
-        
-        if($request->hasFile('image')){
-            $request->file('image')->move('imageagenda/',$request->file('image')->getClientOriginalName());
-            $data->image = $request->file('image')->getClientOriginalName();
-            $data->save();
+        $validatedData = $this->validate($request,[
+            'name' => ['required'],
+            'mapel_id' => ['required'],
+            'user_id' => ['required'],
+            'materi' => ['required'],
+            'jam_pelajaran' => ['required'],
+            'absen' => ['required'],
+            'jumlah_hadir' => ['required'],
+            'jumlah_tidak_hadir' => ['required'],
+            'kelas_id' => ['required'],
+            'pembelajaran' => ['required'],
+            'link' => ['required'],
+            'image' => ['required','image'],
+            'keterangan' => ['required']
+        ]);
+
+        if($request->file('image')){
+            if($request->poto){
+                Storage::delete($request->poto);
+            }
+            $validatedData['image'] = $request->file('image')->store('agenda-image');
         }
+
+        Agenda::where('id',$id)->update($validatedData);
 
         return redirect()->route('guruagenda')->with('Edit','Data berhasil Diubah!');
     }

@@ -10,6 +10,7 @@
     <div class="row">
         <form action="/updatekelas/{{ $data->id }}" method="POST">
             @csrf
+            @method("put")
             <div class="mb-4">
                 <label for="nama_kelas" class="form-label">Nama Kelas</label>
                 <input type="text" class="form-control @error('nama_kelas') is-invalid @enderror" id="nama_kelas" 

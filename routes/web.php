@@ -84,7 +84,6 @@ Route::get('/deleteregister/{id}',[RegisterController::class,'destroy'])->middle
 Route::get('/editregister/{id}',[RegisterController::class,'edit'])->middleware('admin');
 Route::post('/updateregister/{id}',[RegisterController::class,'update']);
 
-
 // Login & Logout
 Route::get('/login',[LoginController::class,'index'])->middleware('guest');
 Route::post('/login',[LoginController::class,'authenticate']);

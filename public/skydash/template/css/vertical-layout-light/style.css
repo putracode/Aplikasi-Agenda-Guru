@@ -116,6 +116,9 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
+
+
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -30586,10 +30589,14 @@ div.tagsinput span.tag a {
   left: 30px;
 }
 
+
+
+
 @media (max-width: 991px) {
   #settings-trigger {
     display: none;
   }
 }
+
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

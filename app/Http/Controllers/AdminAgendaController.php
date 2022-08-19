@@ -8,6 +8,7 @@ use App\Models\Mapel;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminAgendaController extends Controller
 {
@@ -32,6 +33,7 @@ class AdminAgendaController extends Controller
         $validatedData = $this->validate($request,[
             'name' => ['required'],
             'mapel_id' => ['required'],
+            'user_id' => ['required'],
             'materi' => ['required'],
             'jam_pelajaran' => ['required'],
             'absen' => ['required'],
@@ -44,17 +46,11 @@ class AdminAgendaController extends Controller
             'keterangan' => ['required']
         ]);
 
-        // if($request->file('image')){
-        //     $validatedData['image'] = $request->file('image')->store('agenda-image');
-        // }
-
-        $data = Agenda::create($request->all());
-
-        if($request->hasFile('image')){
-            $request->file('image')->move('imageagenda/',$request->file('image')->getClientOriginalName());
-            $data->image = $request->file('image')->getClientOriginalName();
-            $data->save();
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('agenda-image');
         }
+
+        Agenda::create($validatedData);
         
         return redirect()->route('adminagenda')->with('Success','Data berhasil Ditambahkan!');
     }
@@ -62,8 +58,12 @@ class AdminAgendaController extends Controller
 
     public function destroy($id){
         
-        $agenda = agenda::find($id);
+        $post = agenda::find($id);
+        if($post->image){
+            Storage::delete($post->image);
+        }
 
+        $agenda = agenda::find($id);
         $agenda->delete();
         
         return redirect()->route('adminagenda');
@@ -88,15 +88,30 @@ class AdminAgendaController extends Controller
 
 
     public function update(Request $request,$id){
-        $data = agenda::find($id);
+        $validatedData = $this->validate($request,[
+            'name' => ['required'],
+            'mapel_id' => ['required'],
+            'user_id' => ['required'],
+            'materi' => ['required'],
+            'jam_pelajaran' => ['required'],
+            'absen' => ['required'],
+            'jumlah_hadir' => ['required'],
+            'jumlah_tidak_hadir' => ['required'],
+            'kelas_id' => ['required'],
+            'pembelajaran' => ['required'],
+            'link' => ['required'],
+            'image' => ['required','image'],
+            'keterangan' => ['required']
+        ]);
 
-        $data->update($request->all());
-        
-        if($request->hasFile('image')){
-            $request->file('image')->move('imageagenda/',$request->file('image')->getClientOriginalName());
-            $data->image = $request->file('image')->getClientOriginalName();
-            $data->save();
+        if($request->file('image')){
+            if($request->poto){
+                Storage::delete($request->poto);
+            }
+            $validatedData['image'] = $request->file('image')->store('agenda-image');
         }
+
+        Agenda::where('id',$id)->update($validatedData);
 
         return redirect()->route('adminagenda')->with('Edit','Data berhasil Diubah!');
     }

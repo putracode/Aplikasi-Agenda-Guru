@@ -41,7 +41,7 @@
                                 Edit
                             </button>    --}}
                             <a href="/editmapel/{{ $row->id }}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="/deletemapel/{{ $row->id }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/deletemapel/{{ $row->id }}" class="btn btn-danger btn-sm" onclick="return confirm('Apa kamu ingin menghapus data ini?')">Delete</a>
                         </td>
                     </tr>
                     @endforeach

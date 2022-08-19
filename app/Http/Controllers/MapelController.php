@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class MapelController extends Controller
@@ -37,6 +38,10 @@ class MapelController extends Controller
 
     public function destroy($id){
         $data = mapel::find($id);
+
+        foreach ($data->guru as $key => $guru) {
+            Guru::find($guru->id)->delete();
+        }
 
         $data->delete();
         

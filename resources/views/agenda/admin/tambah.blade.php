@@ -136,7 +136,8 @@
 
         <div class="mb-4">
             <label for="dokumentasi" class="form-label">Dokumentasi</label>
-            <input class="form-control @error('image') is-invalid @enderror" type="file" id="dokumentasi" name="image">
+            <img class="img-preview mb-3 img-fluid col-sm-4">
+            <input class="form-control @error('image') is-invalid @enderror" type="file" id="dokumentasi" name="image" onchange="previewImage()">
             @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -169,4 +170,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
+
+<script>
+    function previewImage(){
+        const image = document.querySelector("#dokumentasi");
+        const imgPreview = document.querySelector(".img-preview");
+    
+        imgPreview.style.display = "block";
+    
+        const blob = URL.createObjectURL(image.files[0]);
+        imgPreview.src = blob;
+    }
 </script>

@@ -75,7 +75,7 @@
                         <td>{{ $row->kelas->nama_kelas }}</td>
                         <td>{{ $row->pembelajaran }}</td>
                         <td>{{ $row->link }}</td>
-                        <td><img src="{{ asset('imageagenda/' . $row->image) }}" alt="" class="img-fluid"></td>
+                        <td><img src="{{ asset('storage/' . $row->image) }}" alt="" class="img-fluid"></td>
                         {{-- <td>{{ $row->image }}</td> --}}
                         <td>{{ $row->keterangan }}</td>
                         <td>
@@ -86,7 +86,7 @@
                                 class="btn btn-warning btn-sm mb-1 d-block">Edit</a>
 
 
-                            <a href="/deleteagendaadmin/{{ $row->id }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/deleteagendaadmin/{{ $row->id }}" class="btn btn-danger btn-sm" onclick="return confirm('Apa kamu ingin menghapus data ini?')">Delete</a>
 
                         </td>
                     </tr>

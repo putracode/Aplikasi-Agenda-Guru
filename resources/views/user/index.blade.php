@@ -46,7 +46,7 @@
                                 Edit
                             </button>    --}}
                             <a href="/editregister/{{ $row->id }}" class="btn btn-warning btn-sm mb-1 d-block">Edit</a>
-                            <a href="/deleteregister/{{ $row->id }}" class="btn btn-danger btn-sm ">Delete</a>
+                            <a href="/deleteregister/{{ $row->id }}" class="btn btn-danger btn-sm " onclick="return confirm('Apa kamu ingin menghapus data ini?')">Delete</a>
                         </td>
                     </tr>
                     @endforeach

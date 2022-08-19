@@ -16,6 +16,7 @@ class GuruController extends Controller
     {
 
         $data = Guru::all()->sortBy('nama_guru');
+        
         $user = User::where('role','guru')->get();
         $mapel = mapel::all();
         return view('guru.index',[
